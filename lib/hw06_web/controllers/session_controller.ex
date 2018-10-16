@@ -5,6 +5,8 @@ defmodule Hw06Web.SessionController do
     render(conn, "index.html")
   end
 
+  def logout(conn, _params), do: delete(conn, _params)
+
   def create(conn, %{"email" => email}) do
     user = Hw06.Users.get_user_by_email(email)
     if user do

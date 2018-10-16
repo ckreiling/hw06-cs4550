@@ -19,8 +19,9 @@ defmodule Hw06Web.Router do
 
     get "/", PageController, :index
     get "/login", SessionController, :login
+    get "/logout", SessionController, :delete
     resources "/users", UserController
-    resources "/sessions", SessionController, only: [:create, :delete], singleton: true
+    resources "/sessions", SessionController, only: [:create], singleton: true
     resources "/todo-items", TodoItemController
   end
 

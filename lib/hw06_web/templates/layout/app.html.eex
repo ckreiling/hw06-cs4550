@@ -11,20 +11,26 @@
 <div class="container">
       <nav class="navbar navbar-expand-sm navbar-light bg-white">
         <div class="col-4">
-          <a class="navbar-brand" href="#">Todo List Helper</a>
+          <%= link "The Todo App", class: "navbar-brand", to: Routes.page_path(@conn, :index) %>
         </div>
         <div class="col-8">
-          <ul class="col-8 navbar-nav mr-auto">
+          <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
+              <%= link "Users", class: "nav-link", to: Routes.user_path(@conn, :index) %>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users">Users</a>
-            </li>
+            <%= if is_nil(@current_user) do %>
+              <li>
+                <%= link "Register", class: "nav-link", to: Routes.user_path(@conn, :new) %>
+              </li>
+              <li>
+                <%= link "Login", class: "nav-link", to: Routes.session_path(@conn, :login) %>
+              </li>
+            <% else %>
+              <li>
+                <%= link "Logout", class: "nav-link", to: Routes.session_path(@conn, :delete)%>
+              </li>
+            <% end %>
           </ul>
-          <div class="col-4">
-            <%= link "Register", to: Routes.user_path(@conn, :new) %>
-          </div>
         </a>
       </nav>
 
