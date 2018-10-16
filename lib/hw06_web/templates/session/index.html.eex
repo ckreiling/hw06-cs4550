@@ -1,5 +1,12 @@
 <h1>Login</h1>
 
 <%= form_for @conn, Routes.session_path(@conn, :create), fn f -> %>
-TODO add form
+  <div class="form-group">
+    <%= label f, :email %>
+    <%= text_input f, :email %>
+    <%= error_tag f, :email %>
+  </div>
+
+  <%= submit "Submit", class: "btn btn-primary" %>
+
 <% end %>

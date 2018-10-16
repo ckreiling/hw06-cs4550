@@ -14,8 +14,8 @@ defmodule Hw06Web.SessionController do
       |> redirect(to: Routes.page_path(conn, :index))
     else
       conn
-      |> put_flash(:error, "Login failed.")
-      |> redirect(to: Routes.page_path(conn, :index))
+      |> put_flash(:error, "There is no Email with this account.")
+      |> login(conn)
     end
   end
 
