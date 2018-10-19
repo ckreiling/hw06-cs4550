@@ -16,7 +16,7 @@ defmodule Hw06.TodoItems.TodoItem do
   @doc false
   def changeset(todo_item, attrs) do
     todo_item
-    |> cast(attrs, [:title, :description, :completed, :time_spent])
-    |> validate_required([:title, :description, :completed, :time_spent])
+    |> cast(attrs, [:title, :description, :completed, :time_spent, :assigned_to])
+    |> validate_required([:title, :description, :completed, :time_spent, :assigned_to])
   end
 end

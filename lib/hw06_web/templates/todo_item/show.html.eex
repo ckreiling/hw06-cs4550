@@ -1,4 +1,4 @@
-<h1>Show Todo item</h1>
+<h1>Todo item</h1>
 
 <ul>
 
@@ -20,6 +20,11 @@
   <li>
     <strong>Time spent:</strong>
     <%= @todo_item.time_spent %>
+  </li>
+
+  <li>
+    <strong>Assigned to:</strong>
+    <%= @todo_item.assigned_to %>
   </li>
 
 </ul>

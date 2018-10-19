@@ -5,23 +5,46 @@
     </div>
   <% end %>
 
-  <%= label f, :title %>
-  <%= text_input f, :title %>
-  <%= error_tag f, :title %>
-
-  <%= label f, :description %>
-  <%= textarea f, :description %>
-  <%= error_tag f, :description %>
-
-  <%= label f, :completed %>
-  <%= checkbox f, :completed %>
-  <%= error_tag f, :completed %>
-
-  <%= label f, :time_spent %>
-  <%= number_input f, :time_spent %>
-  <%= error_tag f, :time_spent %>
-
-  <div>
-    <%= submit "Save" %>
+<div class="input-group">  
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="">Title</span>
   </div>
+        <%= text_input f, :title, class: "form-control" %>
+      <%= error_tag f, :title %>
+</div>
+
+<div class="input-group">  
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="">Description</span>
+  </div>
+        <%= text_input f, :description, class: "form-control" %>
+      <%= error_tag f, :description %>
+</div>
+
+<div class="input-group">  
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="">Completed</span>
+
+  </div>
+        <%= checkbox f, :completed, class: "form-control" %>
+      <%= error_tag f, :completed %>
+</div>
+
+<div class="input-group">  
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="">Time spent (15 min intervals)</span>
+      <%= number_input f, :time_spent, class: "form-control" %>
+      <%= error_tag f, :time_spent %>
+  </div>
+</div>
+
+<div class="input-group">  
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="">Assigned to</span>
+      <%= text_input f, :assigned_to, class: "form-control" %>
+      <%= error_tag f, :assigned_to %>
+  </div>
+</div>
+
+  <%= submit "Save", class: "btn btn-primary" %>
 <% end %>
