@@ -1,6 +1,7 @@
 defmodule Hw06Web.UserController do
   use Hw06Web, :controller
-  # todo: update controller to assign user id to the session
+
+  plug Hw06Web.Plugs.AdminOnly when action in [:index, :update, :delete]
 
   alias Hw06.Users
   alias Hw06.Users.User
@@ -16,15 +17,21 @@ defmodule Hw06Web.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    case Users.create_user(user_params) do
-      {:ok, user} ->
-        conn
-        |> put_flash(:info, "User created successfully.")
-        |> put_session(:user_id, user.email)
-        |> redirect(to: Routes.todo_item_path(conn, :index))
+    if is_nil(Users.get_user_by_email(user_params["email"])) do
+      case Users.create_user(user_params) do
+        {:ok, user} ->
+          conn
+          |> put_flash(:info, "User created successfully.")
+          |> put_session(:user_id, user.email)
+          |> redirect(to: Routes.todo_item_path(conn, :index))
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, "new.html", changeset: changeset)
+      end
+    else
+      conn
+      |> put_flash(:error, "There is already a user associated with that e-mail. Either login in or use a different e-mail.")
+      |> new(user_params)
     end
   end
 

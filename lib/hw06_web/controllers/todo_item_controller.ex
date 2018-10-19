@@ -1,6 +1,8 @@
 defmodule Hw06Web.TodoItemController do
   use Hw06Web, :controller
 
+  plug Hw06Web.Plugs.Authenticate when action in [:new, :create, :show, :edit, :update, :delete]
+
   alias Hw06.TodoItems
   alias Hw06.TodoItems.TodoItem
 

@@ -13,7 +13,7 @@ defmodule Hw06Web.SessionController do
       conn
       |> put_session(:user_id, user.email)
       |> put_flash(:info, "Welcome back #{user.email}")
-      |> redirect(to: Routes.page_path(conn, :index))
+      |> redirect(to: Routes.todo_item_path(conn, :index))
     else
       conn
       |> put_flash(:error, "There is no Email with this account.")
@@ -25,6 +25,6 @@ defmodule Hw06Web.SessionController do
     conn
     |> delete_session(:user_id)
     |> put_flash(:info, "Logged out.")
-    |> redirect(to: Routes.page_path(conn, :index))
+    |> redirect(to: Routes.session_path(conn, :login))
   end
 end

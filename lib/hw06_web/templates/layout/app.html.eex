@@ -15,9 +15,6 @@
         </div>
         <div class="col-8">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <%= link "Users", class: "nav-link", to: Routes.user_path(@conn, :index) %>
-            </li>
             <%= if is_nil(@current_user) do %>
               <li>
                 <%= link "Register", class: "nav-link", to: Routes.user_path(@conn, :new) %>
@@ -26,6 +23,11 @@
                 <%= link "Login", class: "nav-link", to: Routes.session_path(@conn, :login) %>
               </li>
             <% else %>
+              <%= if @current_user.admin do %>
+                <li class="nav-item">
+                  <%= link "Users", class: "nav-link", to: Routes.user_path(@conn, :index) %>
+                </li>
+              <% end %>
               <li>
                 <%= link "Logout", class: "nav-link", to: Routes.session_path(@conn, :delete)%>
               </li>
